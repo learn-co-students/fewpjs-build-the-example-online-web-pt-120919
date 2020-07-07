@@ -3,7 +3,8 @@ const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
-
+let hidden = document.getElementById("modal");
+hidden.className = "hidden"
 
 
 
@@ -23,3 +24,4 @@ function mimicServerCall(url="http://mimicServer.example.com", config={}) {
     }, 300);
   });
 }
+
