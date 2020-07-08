@@ -4,7 +4,33 @@ const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
 
+let hearts = {
+  "♡": "♥",
+  "♥": "♡"
+};
 
+let colours = {
+  "red" : "",
+  "": "red"
+};
+
+let theHearts = document.querySelectorAll(".like");
+
+function likeCallback(e) {
+  let heart = e.target;
+  mimicServerCall("bogusUrl")
+    .then(function(serverMessage){
+       heart.innerText = hearts[heart.innerText];
+       heart.style.color = colours[heart.style.color];
+    })
+    .catch(function(error) {
+      document.getElementById("modal").className = "";
+    });
+}
+
+for (let glyph of theHearts) {
+  glyph.addEventListener("click", likeCallback);
+}
 
 
 //------------------------------------------------------------------------------
