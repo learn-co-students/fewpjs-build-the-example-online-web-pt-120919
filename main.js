@@ -10,46 +10,33 @@ const likes = document.getElementsByClassName("like");
 for (let glyph of likes) {
   glyph.addEventListener("click", function(e){
     
-    mimicServerCall()
-      .then(function(serverMessage) {
+  //  mimicServerCall()
+   //   .then(function(serverMessage) {
         changeHeart(e);
-    }).catch(function(error){ 
+    /* }).catch(function(error){ 
       document.getElementById("modal").className = "";
       document.getElementById("modal").innerText += ` ${error}`
       setTimeout(function(){ 
         document.getElementById("modal").className = "hidden";
         document.getElementById("modal").innerText = "Error!";
       }, 5000);
-    });
+    });*/
   });
 }
 
 function changeHeart(event){
   //click on the like area
-  if (event.target.querySelector("span")) {
-    let heart = event.target.querySelector("span").innerText;
-    // change heart
-    if (heart == EMPTY_HEART){
-      event.target.querySelector("span").innerText = FULL_HEART;
-      event.target.querySelector("span").className = "activated-heart";
-    } else {
-      event.target.querySelector("span").innerText = EMPTY_HEART;
-      event.target.querySelector("span").className = "like-glyph";
-    }
-  } 
-  //specefic click on the heart
-  else {
-    let heart = event.target.innerText;
-    // change heart
-    if (heart == EMPTY_HEART){
-      event.target.innerText = FULL_HEART;
-      event.target.className = "activated-heart";
+  let heart = event.target.querySelector("span")
+  if (!heart) {
+    heart = event.target
+  }
 
-    } else {
-      event.target.innerText = EMPTY_HEART;
-      event.target.className = "like-glyph";
-
-    }
+  if (heart.innerText == EMPTY_HEART){
+    heart.innerText = FULL_HEART;
+    heart.className = "activated-heart";
+  } else {
+    heart.innerText = EMPTY_HEART;
+    heart.className = "like-glyph";
   }
 }
 
