@@ -10,17 +10,17 @@ const likes = document.getElementsByClassName("like");
 for (let glyph of likes) {
   glyph.addEventListener("click", function(e){
     
-  //  mimicServerCall()
-   //   .then(function(serverMessage) {
+    mimicServerCall()
+      .then(function(serverMessage) {
         changeHeart(e);
-    /* }).catch(function(error){ 
+     }).catch(function(error){ 
       document.getElementById("modal").className = "";
       document.getElementById("modal").innerText += ` ${error}`
       setTimeout(function(){ 
         document.getElementById("modal").className = "hidden";
         document.getElementById("modal").innerText = "Error!";
       }, 5000);
-    });*/
+    });
   });
 }
 
