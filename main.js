@@ -2,8 +2,40 @@
 const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 
+const modal = document.querySelector('#modal')
+modal.className = "hidden"
+
+const hearts = document.getElementsByClassName('like-glyph')
+console.log(hearts)
+
+mimicServerCall()
+.then(() => {
+  for (heart of hearts) {
+    heart.addEventListener("click", (e) => {
+      let h = e.target
+      if (h.innerHTML === EMPTY_HEART) {
+        h.innerHTML = FULL_HEART
+        h.className = "activated-heart"
+      } else {
+        h.innerHTML = EMPTY_HEART
+        h.className = ""
+      }
+      //console.log(e)
+      //e.target.innerHTML = FULL_HEART
+      //e.target.className = "activated-heart"
+    })
+  }
+})
 // Your JavaScript code goes here!
 
+
+
+  
+  .catch(function(error) {
+    modal.className = ""
+    const modalMessage = document.querySelector('#modal-message')
+    modalMessage.innerHTML = error 
+  })
 
 
 
