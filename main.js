@@ -4,7 +4,35 @@ const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
 
+document.querySelector('#modal').className = "hidden" // Add the .hidden class to the error modal in the HTML so it does not appear when the page first loads
 
+let glyphStates = {
+    "♡": "♥",
+    "♥": "♡"
+};
+
+let colorStates = {
+    "red": "",
+    "": "red"
+};
+
+let articleHearts = document.querySelectorAll(".like");
+
+function likeCallback(e) {
+    let heart = e.target;
+    mimicServerCall("bogusUrl") // Invoke mimicServerCall to simulate making a server request
+        .then(function(serverMessage) {
+            heart.innerText = glyphStates[heart.innerText];
+            heart.style.color = colorStates[heart.style.color];
+        })
+        .catch(function(error) {
+            document.getElementById("modal").className = ""; // Display the error modal by removing the .hidden class
+        });
+}
+
+for (let glyph of articleHearts) {
+    glyph.addEventListener("click", likeCallback);
+}
 
 
 //------------------------------------------------------------------------------
